@@ -1,16 +1,17 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"os"
 	"time"
+
+	"github.com/Boalq/CLI-Obsidian-Logger/internal/logtext"
 )
 
-func main() {
-	// Your dir path to your vault
-	note_dir := "/home/boalq/Documents/BoranPersonal/09 Calender/"
+// Your dir path to your vault
+const note_dir = "/home/boalq/Documents/BoranPersonal/09 Calender/"
 
+func main() {
 	if len(os.Args) != 2 {
 		fmt.Println("Invalid Args\nUsage: ./x string")
 		return
@@ -54,21 +55,23 @@ func main() {
 	}
 
 	// Building the Actual Log
-	var text bytes.Buffer
+	var logtxt logtext.LogText
 
 	LogTime := fmt.Sprintf("%d:%d", time.Now().Hour(), time.Now().Minute())
 
 	// Header
-	fmt.Fprintf(&text, "\n--- \t New Log at: %s \t ---\n\n", LogTime)
+	logtxt.Header = fmt.Sprintf("\n--- \t New Log at: %s \t ---\n\n", LogTime)
 
 	// Body
-	fmt.Fprintf(&text, "%s\n", os.Args[1])
+	logtxt.Body = fmt.Sprintf("%s\n", os.Args[1])
 
 	// Footer
-	//fmt.Fprintf(&text, "\n--- \t Log End \t ---")
+	//logtxt.Footer = fmt.Sprintf("\n--- \t Log End \t ---")
+
+	msg := logtxt.Header + logtxt.Body + logtxt.Footer
 
 	// Writing to the Daily Note File
-	fmt.Fprint(f, text.String())
+	fmt.Fprint(f, msg)
 
 	// Feedback of successful transcription
 	fmt.Printf("'%s' successfully written to %s", os.Args[1], date)
