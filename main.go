@@ -5,13 +5,11 @@ import (
 	"fmt"
 	"os"
 	"time"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	godotenv.Load()
-	note_dir := os.Getenv("DailyNoteDir")
+	// Your dir path to your vault
+	note_dir := "/home/boalq/Documents/BoranPersonal/09 Calender/"
 
 	if len(os.Args) != 2 {
 		fmt.Println("Invalid Args\nUsage: ./x string")
@@ -54,7 +52,6 @@ func main() {
 		fmt.Printf("%e File couldn't be found neither created.", err)
 		return
 	}
-
 
 	// Building the Actual Log
 	var text bytes.Buffer
