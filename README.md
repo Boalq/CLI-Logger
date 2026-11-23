@@ -18,7 +18,7 @@ $ log "fixed the build bug"
   ```
 - **Line 25:** file name pattern — must match your daily note names:
   ```go
-  date := fmt.Sprintf("%d-%d-%d.md", day, month, year)   // 21-11-2026.md
+  date := fmt.Sprintf("%02d-%02d-%d.md", day, month, year)   // 21-11-2026.md
   ```
   e.g. for Obsidian's default `2026-11-21.md` use `year, month, day` (and `%02d` for zero-padded names like `2026-11-05.md`).
 

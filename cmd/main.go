@@ -22,7 +22,7 @@ func main() {
 	// Change this if you format the Date different
 	// Or use something other than MarkDown
 	// This has to match the file name pattern
-	date := fmt.Sprintf("%d-%d-%d.md", day, month, year)
+	date := fmt.Sprintf("%02d-%02d-%d.md", day, month, year)
 
 	notes, err := os.ReadDir(note_dir)
 	if err != nil {
@@ -57,7 +57,7 @@ func main() {
 	// Building the Actual Log
 	var logtxt logtext.LogText
 
-	LogTime := fmt.Sprintf("%d:%d", time.Now().Hour(), time.Now().Minute())
+	LogTime := fmt.Sprintf("%02d:%02d", time.Now().Hour(), time.Now().Minute())
 
 	// Header
 	logtxt.Header = fmt.Sprintf("\n--- \t New Log at: %s \t ---\n\n", LogTime)
